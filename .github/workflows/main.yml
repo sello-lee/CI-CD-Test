@@ -3,7 +3,6 @@ name: Test
 on:
   # workflow가 실행되는 경우 (main 브랜치에 push하는 경우, action 탭에서 수동으로 동작시키는 경우)
   push:
-    branches: [ "main" ]
     tags:
       - '*'
   workflow_dispatch:
