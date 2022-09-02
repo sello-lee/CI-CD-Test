@@ -1,10 +1,10 @@
-name: Test
+name: Wait
 
 on:
   workflow_dispatch:
   
 jobs:
-  check:
+  wait:
     runs-on: ubuntu-22.04
     steps:
       - name: Wait for tests to succeed
@@ -15,16 +15,5 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-  test:
-    name: Run tests
-    runs-on: ubuntu-22.04
-    needs: check
-    steps:
-      - name: Checkout project
-        uses: actions/checkout@v3
-      - name: echo and sleep
-        run: |
-          echo Hello, world!
-          sleep 15s
-  
-    
+      - name: echooo
+        run: echo hiii
