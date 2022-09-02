@@ -1,22 +1,29 @@
 name: Test
 
 on:
-  # workflow가 실행되는 경우 (main 브랜치에 push하는 경우, action 탭에서 수동으로 동작시키는 경우)
   push:
-    tags:
-      - '*'
   workflow_dispatch:
-
+  
 jobs:
-  build:
-    # job이 실행될 환경 - 최신 mac os
-    runs-on: macos-latest
-
+  test:
+    name: Run tests
+    runs-on: ubuntu-22.04
     steps:
-      - name: Select latest Xcode
-        run: "sudo xcode-select -s /Applications/Xcode.app"
       - name: Checkout project
         uses: actions/checkout@v3
-      - name: Echo test
-        run: echo Hello, world!
-
+      - name: echo and sleep
+        run: |
+          echo Hello, world!
+          sleep 15s
+  
+  publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Run tests'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+    
