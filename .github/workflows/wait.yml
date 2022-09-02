@@ -1,6 +1,7 @@
 name: Wait
 
 on:
+  push:
   workflow_dispatch:
   
 jobs:
