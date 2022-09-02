@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  test:
-    publish:
+  publish:
     runs-on: ubuntu-22.04
     steps:
       - name: Wait for tests to succeed
@@ -15,7 +14,8 @@ jobs:
           check-name: 'Run tests'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
-  
+
+  test:
     name: Run tests
     runs-on: ubuntu-22.04
     steps:
@@ -26,5 +26,4 @@ jobs:
           echo Hello, world!
           sleep 15s
   
-
     
