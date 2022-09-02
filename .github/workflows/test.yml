@@ -7,7 +7,6 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-22.04
-    needs: wait
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
