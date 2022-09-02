@@ -1,11 +1,21 @@
 name: Test
 
 on:
-  push:
   workflow_dispatch:
   
 jobs:
   test:
+    publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Run tests'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+  
     name: Run tests
     runs-on: ubuntu-22.04
     steps:
@@ -16,14 +26,5 @@ jobs:
           echo Hello, world!
           sleep 15s
   
-  publish:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
-        with:
-          ref: ${{ github.ref }}
-          check-name: 'Run tests'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+
     
