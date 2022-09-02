@@ -1,12 +1,24 @@
-name: Wait
+name: Test and Wait
 
 on:
   push:
   workflow_dispatch:
   
 jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: echo and sleep
+        run: |
+          echo Hello, world!
+          sleep 15s
+  
   wait:
     runs-on: ubuntu-22.04
+    needs: test
     steps:
       - name: Wait for tests to succeed
         uses: lewagon/wait-on-check-action@v1.0.0
