@@ -5,19 +5,6 @@ on:
   workflow_dispatch:
   
 jobs:
-  wait:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Wait for tests to succeed
-        uses: lewagon/wait-on-check-action@v1.0.0
-        with:
-          ref: ${{ github.ref }}
-          check-name: 'Run tests'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-      - name: echooo
-        run: echo hiii
-
   test:
     name: Run tests
     runs-on: ubuntu-22.04
@@ -29,3 +16,15 @@ jobs:
         run: |
           echo Hello, world!
           sleep 15s
+  wait:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Wait for tests to succeed
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: test
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: echooo
+        run: echo hiii
+
