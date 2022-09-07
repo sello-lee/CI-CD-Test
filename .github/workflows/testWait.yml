@@ -5,14 +5,14 @@ on:
   
 jobs:
 
-  test:
-    name: Run tests
+  test1:
+    name: Run tests1
     runs-on: ubuntu-22.04
     needs: [ consecutiveness ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
-      - name: echo and sleep
+      - name: echo and sleep1
         run: |
           echo Hello, world!
           sleep 20s
@@ -23,30 +23,30 @@ jobs:
     - uses: mktcode/consecutive-workflow-action@e2e008186aa210faacd68ec30f6ac236f7e2f435
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: echo and sleep
+    - name: echo and sleep2
       run: |
         echo Hello, world!
         sleep 20s
 
-  test:
-    name: Run tests
+  test3:
+    name: Run tests3
     runs-on: ubuntu-22.04
     needs: [ consecutiveness ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
-      - name: echo and sleep
+      - name: echo and sleep3
         run: |
           echo Hello, world!
           sleep 20s
 
-  test:
-    name: Run tests
+  test4:
+    name: Run tests4
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
-      - name: echo and sleep
+      - name: echo and sleep4
         run: |
           echo Hello, world!
           sleep 20s
