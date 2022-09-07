@@ -5,17 +5,14 @@ on:
   workflow_dispatch:
   
 jobs:
-  wait:
-    runs-on: ubuntu-22.04
+
+  consecutiveness:
+    runs-on: ubuntu-latest
     steps:
-      - name: Wait for tests to succeed
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: test
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      - name: echooo
-        run: echo hiii
+    - uses: mktcode/consecutive-workflow-action@e2e008186aa210faacd68ec30f6ac236f7e2f435
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
   test:
     name: Run tests
     runs-on: ubuntu-22.04
@@ -26,6 +23,6 @@ jobs:
       - name: echo and sleep
         run: |
           echo Hello, world!
-          sleep 15s
+          sleep 20s
 
 
