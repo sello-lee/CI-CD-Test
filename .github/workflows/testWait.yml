@@ -1,17 +1,9 @@
 name: Test and Wait
 
 on:
-  push:
   workflow_dispatch:
   
 jobs:
-
-  consecutiveness:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: mktcode/consecutive-workflow-action@e2e008186aa210faacd68ec30f6ac236f7e2f435
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     name: Run tests
@@ -25,4 +17,36 @@ jobs:
           echo Hello, world!
           sleep 20s
 
+  consecutiveness:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: mktcode/consecutive-workflow-action@e2e008186aa210faacd68ec30f6ac236f7e2f435
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: echo and sleep
+      run: |
+        echo Hello, world!
+        sleep 20s
 
+  test:
+    name: Run tests
+    runs-on: ubuntu-22.04
+    needs: [ consecutiveness ]
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: echo and sleep
+        run: |
+          echo Hello, world!
+          sleep 20s
+
+  test:
+    name: Run tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: echo and sleep
+        run: |
+          echo Hello, world!
+          sleep 20s
