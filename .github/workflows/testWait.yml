@@ -16,7 +16,7 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-22.04
-    needs: wait
+    needs: [ consecutiveness ]
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
