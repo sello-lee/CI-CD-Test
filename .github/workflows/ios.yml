@@ -1,0 +1,14 @@
+name: Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review, review_requested]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start xcode build 🛠
+      run: |
+        xcodebuild clean test -project CI-CD-Test/CI-CD-Test.xcodeproj -scheme CI-CD-Test -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=13.0'
