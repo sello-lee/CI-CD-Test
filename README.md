@@ -1,3 +1,4 @@
 # CI-CD-Test
 
-swift ci
+swift ci X
+ios ci
